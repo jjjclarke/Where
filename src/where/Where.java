@@ -29,6 +29,12 @@ public class Where {
 		return output.toString();
 	}
 	
+	private static String checkCPU() {
+		String cpu = exec("grep -m 1 'model name' /proc/cpuinfo | awk -F: '{ print $2 }' | sed 's/^ *//'\n");
+		
+		return cpu;
+	}
+	
 	private static String checkOS() {
 		String os = exec("cat /etc/os-release");
 		
@@ -103,6 +109,11 @@ public class Where {
 			Colour.printCyan(exec("echo -n $USER@$HOSTNAME"));
 			
 			System.out.println(); // newline
+		}
+		if (Flags.SHOW_CPU) {
+			Colour.printCyan("cpu: ");
+			Colour.printWhite(checkCPU());
+			// no newline needed here for some??? reason
 		}
 		if (Flags.SHOW_OS) {
 			Colour.printCyan("os: ");
