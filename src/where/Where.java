@@ -35,6 +35,26 @@ public class Where {
 		return cpu;
 	}
 	
+	private static String checkGPU() {
+		// different commands for different GPU vendors
+		String[] commands = {
+			"nvidia-smi --query-gpu=name --format=csv,noheader", // nvidia always being different
+			"lspci | grep VGA | grep -i amd | awk -F: '{ print $3 }' | sed 's/^ *//'", // amd
+			"lspci | grep VGA | grep -i intel | awk -F: '{ print $3 }' | sed 's/^ *//'", // intel
+			"lspci | grep -E 'VGA|3D' | awk -F: '{ print $3 }' | sed 's/^ *//'" // generic
+		};
+		
+		for (int i = 0; i < commands.length; i++) {
+			String output = exec(commands[i]);
+			
+			if (!output.isEmpty()) {
+				return output;
+			}
+		}
+		
+		return "No GPU information could be found. Disable SHOW_GPU in Flags.java\n"; // newline for error
+	}
+	
 	private static String checkOS() {
 		String os = exec("cat /etc/os-release");
 		
@@ -114,6 +134,10 @@ public class Where {
 			Colour.printCyan("cpu: ");
 			Colour.printWhite(checkCPU());
 			// no newline needed here for some??? reason
+		}
+		if (Flags.SHOW_GPU) {
+			Colour.printCyan("gpu: ");
+			Colour.printWhite(checkGPU());
 		}
 		if (Flags.SHOW_OS) {
 			Colour.printCyan("os: ");
