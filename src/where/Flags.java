@@ -4,8 +4,8 @@ public class Flags {
 
 	// toggleable options
 	public static boolean SHOW_HOSTNAME = true;
-	public static boolean SHOW_CPU = true;
-	public static boolean SHOW_GPU = true;
+	public static boolean SHOW_CPU = false;
+	public static boolean SHOW_GPU = false;
 	public static boolean SHOW_OS = true;
 	public static boolean SHOW_SHELL = true;
 	public static boolean SHOW_PKGS = true;
