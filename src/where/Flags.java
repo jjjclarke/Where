@@ -14,7 +14,7 @@ public class Flags {
 	
 	// Show the GPU (e.g. [AMD/ATI] Picasso/Raven 2) - not recommended to use
 	// DEFAULT: false
-	public static boolean SHOW_GPU = true;
+	public static boolean SHOW_GPU = false;
 	
 	// Show the operating system in use (e.g. Arch Linux)
 	// DEFAULT: true
