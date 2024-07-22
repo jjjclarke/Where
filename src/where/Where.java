@@ -126,40 +126,40 @@ public class Where {
 	
 	public static void main(String[] args) {
 		if (Flags.SHOW_HOSTNAME) {
-			Colour.printCyan(exec("echo -n $USER@$HOSTNAME"));
+			Colour.printPurple(exec("echo -n $USER@$HOSTNAME"));
 			
 			System.out.println(); // newline
 		}
 		if (Flags.SHOW_CPU) {
-			Colour.printCyan("cpu: ");
-			Colour.printWhite(checkCPU());
+			Colour.printWhite("cpu: ");
+			Colour.printCyan(checkCPU());
 			// no newline needed here for some??? reason
 		}
 		if (Flags.SHOW_GPU) {
-			Colour.printCyan("gpu: ");
-			Colour.printWhite(checkGPU());
+			Colour.printWhite("gpu: ");
+			Colour.printCyan(checkGPU());
 		}
 		if (Flags.SHOW_OS) {
-			Colour.printCyan("os: ");
-			Colour.printWhite(checkOS());
+			Colour.printWhite("os: ");
+			Colour.printCyan(checkOS());
 			
 			System.out.println(); // newline
 		}
 		if (Flags.SHOW_SHELL) {
-			Colour.printCyan("shell: ");
-			Colour.printWhite(checkShell());
+			Colour.printWhite("shell: ");
+			Colour.printCyan(checkShell());
 			
 			System.out.println(); // newline
 		}
 		if (Flags.SHOW_PKGS) {
-			Colour.printCyan("packages: ");
-			Colour.printWhite(checkPkgs());
+			Colour.printWhite("packages: ");
+			Colour.printCyan(checkPkgs());
 			
 			System.out.println(); // newline
 		}
 		if (Flags.SHOW_KERNEL) {
-			Colour.printCyan("kernel: ");
-			Colour.printWhite(exec("uname -r"));
+			Colour.printWhite("kernel: ");
+			Colour.printCyan(exec("uname -r"));
 			
 			System.out.println(); // newline
 		}
